@@ -1,5 +1,10 @@
 # packer
 
+# Files Content:
+- jenkins_server.sh: Script to install Jenkins Server
+- template.json: Template to create a VM image
+- variables.json: Definition of the variables that we call from template.json file
+
 # Download  & Install Packer
 
 | Download page | [https://www.packer.io/downloads.html]
@@ -58,3 +63,34 @@ https://www.davidbegin.com/a-packer-terraform-structure/]
 
 - Run packer image through terraform 
 image = "packer-1535104174" int Variables folder
+
+
+- Using the variables file to install jenkins script:
+```sh
+{
+"variables": {
+        "service_account_json": "~/shared/iliasproject-214108-fe834ddf82b4.json",
+        "repo_path": "~/packer_dir/",
+        "project_id": "iliasproject-214108"
+},
+
+"builders": [
+    {
+      "type": "googlecompute",
+      "account_file": "iliasproject-214108-fe834ddf82b4.json",
+      "project_id": "iliasproject-214108",
+      "source_image_family": "{{user `source_image_family`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "zone": "us-central1-a"
+    }
+  ],
+
+"provisioners": [
+        {
+                "type": "shell",
+                "script": "jenkins_server.sh",
+                "pause_before": "05s"
+        }
+]
+}
+```
