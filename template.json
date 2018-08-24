@@ -10,8 +10,8 @@
       "type": "googlecompute",
       "account_file": "iliasproject-214108-fe834ddf82b4.json",
       "project_id": "iliasproject-214108",
-      "source_image_family": "centos-7",
-      "ssh_username": "packer",
+      "source_image_family": "{{user `source_image_family`}}",
+      "ssh_username": "{{user `ssh_username`}}",
       "zone": "us-central1-a"
     }
   ],
@@ -19,8 +19,8 @@
 "provisioners": [
 	{
 		"type": "shell",
-		"inline": [ "uname -a", "pwd"]
-
+		"script": "jenkins_server.sh",
+		"pause_before": "05s"
 	}
 ]
 }
