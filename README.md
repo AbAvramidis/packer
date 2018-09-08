@@ -26,7 +26,7 @@ sudo ln -s /opt/packer/packer /usr/bin/packer
 packer version
 packer validate file.json
 packer build
-
+packer build -var-file=variables.json template.json
 ```
 | Web resources | [https://medium.com/the-andela-way/building-custom-machine-images-with-packer-a21c6d932bf6
 https://www.packer.io/docs/builders/googlecompute.html
