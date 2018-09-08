@@ -94,3 +94,4 @@ image = "packer-1535104174" int Variables folder
 ]
 }
 ```
+- After the creation of a packer image, on GCP if you go "images" you can see the name of the image
